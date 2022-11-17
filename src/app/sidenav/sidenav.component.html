@@ -1,0 +1,34 @@
+<mat-nav-list >
+    <div class="logo py-4">
+        <img src="../../assets/logo.svg" alt="CRM-FNI" class="filter-yellow" />
+    </div>
+    <mat-divider></mat-divider>
+    <h2 matSubheader class="mt-2">
+        APPLICATIONS
+    </h2>
+    <div *ngIf="auth.userData as user">
+    <a mat-list-item routerLink="/dashboard" routerLinkActive="list-item-active">
+        <mat-icon>dashboard</mat-icon> Dashboard
+    </a>
+    <a mat-list-item routerLink="/clients" routerLinkActive="list-item-active">
+        <mat-icon>group</mat-icon> Clients
+    </a>
+    <a mat-list-item routerLink="/evenements" routerLinkActive="list-item-active">
+        <mat-icon>compare_arrows</mat-icon> Evenements
+    </a>
+    <a mat-list-item routerLink="/interloc" routerLinkActive="list-item-active">
+        <mat-icon> contact_phone</mat-icon> Interlocuteurs </a>
+    <a mat-list-item routerLink="/documents" routerLinkActive="list-item-active">
+        <mat-icon> description</mat-icon> Documents </a>
+    <a mat-list-item routerLink="/rapports" routerLinkActive="list-item-active">
+        <mat-icon>note_add</mat-icon> Rapports
+    </a>
+    <a mat-list-item routerLink="/agenda" routerLinkActive="list-item-active">
+        <mat-icon> insert_invitation</mat-icon> Agenda
+    </a>
+    <a mat-list-item *ngIf="auth.userData.email == 'admin@gmail.com' " routerLink="/admin" routerLinkActive="list-item-active">
+        <mat-icon>account_box</mat-icon> Admin
+    </a>
+</div>
+
+</mat-nav-list>

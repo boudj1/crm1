@@ -1,0 +1,67 @@
+<div class="container-fluid page">
+    <div class="page_box p-3 mt-2 " id="box">Interlocuteurs</div>
+    <div class="page_content shadow p-3 position-relative" id="content">
+        <div class="page_content-data position-absolute" id="data"></div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2 class="h2">liste Interlocuteurs</h2>
+            <a class="btn btn-success" *ngIf="hideWhenNointerloc" (click)="onCreate()">
+         Ajoute interlocuteur
+        </a>
+        </div>
+        <div class="pricing-header mx-auto">
+            <div class="no-data text-center" *ngIf="preLoader">
+                <img src="assets/preloader.gif" class="preloader-icon" alt="No client" />
+            </div>
+            <div class="no-data text-center" *ngIf="noData">
+                <img src="assets/no-interloc.svg" class="nodata-msg" alt="No interlocuteur" />
+                <p class="nodata-msg">PAS D'Interlocuteurs!</p>
+                <a class="btn btn-success" (click)="onCreate()"> Ajoute interlocuteur</a>
+            </div>
+            <div class="table-responsive" *ngIf="hideWhenNointerloc">
+                <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm" />
+                <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th mat-sort-header="idinterloc" scope="col">identifiant </th>
+                            <th mat-sort-header="nom" scope="col"> Nom</th>
+                            <th mat-sort-header="prenom" scope="col">prenom</th>
+                            <th scope="col">Ligne direct</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Portable</th>
+                            <th scope="col">Societe</th>
+                            <th scope="col">Client</th>
+                            
+                            <th class="text-center" scope="col">Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="
+                        let interloc of interloc |filter: filterTerm |
+                          paginate: { itemsPerPage: 50, currentPage: p } ;
+                          let i = index">
+        
+        
+                          <td scop="row">{{interloc.idinterloc}}</td>
+                          <td>{{interloc.nom}}</td>
+                          <td>{{interloc.prenom}}</td>
+                          <td>{{interloc.ligneD}}</td>
+                          <td>{{interloc.email}} </td>
+                          <td> {{interloc.tele}}</td>
+                          <td>{{interloc.societe}}</td>
+                          <td>{{interloc.idclient}}</td>
+                                    <td class="text-center action-block">
+                                        <span class="btn btn-sm btn-warning" (click)="onEdit(interloc.id,i)"><i class="fa fa-edit"  ></i>Edit</span>
+                                        <span
+                      class="btn btn-sm btn-danger"
+                      (click)="deleteinterloc(interloc)"
+                      ><i class="fa fa-remove"></i>Delete</span>
+    
+                        </tr>
+    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+        </div>

@@ -1,0 +1,103 @@
+<form [formGroup]="editForm" (ngSubmit)="updateForm()" novalidate>
+    <div class="controles-container">
+        <h2>Modifier Client</h2>
+        <mat-form-field>
+            <input formControlName="idclient" matInput placeholder="identifiant" required>
+            <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="NomClient" matInput placeholder="nom client" required>
+            <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="intitule" matInput placeholder="Intitulé du projet">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="siteweb" matInput placeholder="Site Web">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="ref" matInput placeholder="Reference">
+        </mat-form-field>
+    </div>
+    <div class="controles-container">
+        <mat-form-field>
+            <input formControlName="email" matInput placeholder="Adress Email" required>
+            <mat-error>email invalide</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="tele1" matInput placeholder="Telephone Mobile" required>
+            <mat-error> Ce champ est obligatoire </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="tele2" matInput placeholder="Telephone Fix"  required>
+            <mat-error> Ce champ est obligatoire </mat-error>
+          
+
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Wilaya" [matAutocomplete]=" auto" formControlName="wilaya">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="adresse" matInput placeholder="Adresse">
+        </mat-form-field>
+    </div>
+    <div class="controles-container">
+        <mat-form-field>
+            <mat-select placeholder="Secteur" formControlName="secteurA">
+                <ng-container *ngFor="let opt of opt">
+                    <mat-option [value]="opt">{{opt}} </mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="formeleg" matInput placeholder="Forme Légale">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="capitale" matInput placeholder="Capitale en Dinars">
+            <span matSuffix>.00</span>
+            <span matSuffix>DA &nbsp;</span>
+
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input formControlName="CodeRC" matInput placeholder="Code Rc">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="CodeNIF" matInput placeholder="Code NIF">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="codeP" matInput placeholder="Code Postale">
+        </mat-form-field>
+    </div>
+
+    <div class="controles-container">
+        <mat-form-field>
+            <input formControlName="type" matInput placeholder="Type d'entreprise">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="comerciale" matInput placeholder="Commercial">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select formControlName="type_C" placeholder="type">
+                <ng-container *ngFor="let type_C of type_C">
+                    <mat-option value="{{type_C.id}}">{{type_C.value}}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+        <div class="button-row">
+           
+        <button mat-raised-button color="accent" type="submit" class="btn btn-success">
+            update                </button>
+        </div>
+
+    </div>
+
+
+
+
+</form>

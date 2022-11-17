@@ -1,0 +1,72 @@
+<div class="container-fluid page">
+    <div class="page_box p-3 mt-2 " id="box">Rapoorts</div>
+    <div class="page_content shadow p-3 position-relative" id="content">
+        <div class="page_content-data position-absolute" id="data"></div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2 class="h2">liste Rapports</h2>
+            <a class="btn btn-success" *ngIf="hideWhenNorapport" (click)="onCreate()">
+         Ajoute rapport
+        </a>
+        </div>
+        <div class="pricing-header mx-auto">
+            <div class="no-data text-center" *ngIf="preLoader">
+                <img src="assets/preloader.gif" class="preloader-icon" alt="No rapport" />
+            </div>
+            <div class="no-data text-center" *ngIf="noData">
+                <img src="assets/no-rapport.svg" class="nodata-msg" alt="No rapport" />
+                <p class="nodata-msg">PAS de rapport!</p>
+                <a class="btn btn-success" (click)="onCreate()"> Ajoute rapport</a>
+            </div>
+            <div class="table-responsive" *ngIf="hideWhenNorapport">
+                <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm" />
+                <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th mat-sort-header="idclient" scope="col">IDclient </th>
+                            <th mat-sort-header="nomC" scope="col"> Nom Client</th>
+                            <th scope="col">Wilaya</th>
+                            <th scope="col">Montant</th>
+                            <th scope="col">Telephone</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">heure</th>
+                            <th scope="col">interlocuteur</th>
+                            <th scope="col">conclution</th>
+
+                            <th class="text-center" scope="col">Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="
+                  let rapport of rapport |filter: filterTerm |
+                  paginate: { itemsPerPage: 50, currentPage: p } ;
+                  let i = index">
+
+
+                            <th scope="row">{{ rapport.idclient}} </th>
+                            <td>{{ rapport.nomC}}</td>
+                            <td>{{ rapport.wilaya }}</td>
+                            <td>{{ rapport.Amontant}}</td>
+                            <td>{{ rapport.tele1}}</td>
+                            <td> {{ rapport.date}}</td>
+                            <td> {{ rapport.heure}}</td>
+                            <td> {{ rapport.interloc}}</td>
+                            <td> {{ rapport.conclu}}</td>
+                            <td class="text-center action-block">
+                                <span class="btn btn-sm btn-warning" (click)="onEdit(rapport.id,i)"><i class="fa fa-edit"  ></i>Edit</span>
+                                <span class="btn btn-sm btn-danger" (click)="deleterapport(rapport)"><i class="fa fa-remove"></i>Delete</span>
+
+                                <span class="btn btn-sm btn-info">
+                <i class="fa fa-search" (click)="onDetail(rapport.id,i)"></i>Details
+              </span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

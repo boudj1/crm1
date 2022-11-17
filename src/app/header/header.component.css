@@ -1,0 +1,52 @@
+mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    text-align: center;
+}
+.account{
+    color: #ffff;
+}
+
+.bg-dark {
+    background-color: #1e1e2f !important;
+    background: linear-gradient(0deg, #1e1e2f 0, #060d3c 100%);
+}
+
+button {
+    border: 0;
+    outline: none;
+    background: transparent;
+    display: inline;
+    color: rgba(253, 253, 253, 0.5);
+    margin-right: 10px;
+    transition: all .3s ease 0s;
+}
+
+.user {
+    font-size: 15px;
+    display: flex;
+    align-items: right;
+}
+
+.user-image {
+    border-radius: 50%;
+    width: 50px;
+}
+
+.user-image-icon {
+    height: 18px;
+    font-size: 16px;
+}
+
+.mat-menu-content {
+    width: 100px;
+}
+
+#exit {
+    color: black;
+}
+
+#notif {
+    color: aliceblue;
+}

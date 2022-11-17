@@ -1,0 +1,12 @@
+<body>
+  <div class="login" style="background-color : #ffff;border-radius: 10px;">
+      <h1>S'authentifier</h1>
+      <form method="post">
+          <label>email</label>
+          <input type="text" name="u" placeholder="Email" class="formControl" #userEmail required />
+          <label>mot de passe</label>
+          <input type="password" name="p" placeholder="mot de passe" class="formControl" #userPassword required/>
+          <button type="submit" class="btn btn-primary btn-block btn-large" (click)="authService.SignIn(userEmail.value, userPassword.value)">Se connecter</button>
+      </form>
+  </div>
+  </body>

@@ -1,0 +1,172 @@
+<form [formGroup]="editForm"  novalidate>
+    <div class="controles-container">
+        <h2>Modifier Client</h2>
+        <mat-form-field>
+            <input formControlName="idclient" matInput placeholder="identifiant" readonly>
+            <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="NomClient" matInput placeholder="nom client" readonly>
+            <mat-error>Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="intitule" matInput placeholder="Intitulé du projet" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="siteweb" matInput placeholder="Site Web" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="ref" matInput placeholder="Reference"readonly>
+        </mat-form-field>
+    </div>
+    <div class="controles-container">
+        <mat-form-field>
+            <input formControlName="email" matInput placeholder="Adress Email" readonly>
+            <mat-error>email invalide</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="tele1" matInput placeholder="Telephone Mobile" readonly>
+            <mat-error> Ce champ est obligatoire </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="tele2" matInput placeholder="Telephone Fix"  readonly>
+            <mat-error> Ce champ est obligatoire </mat-error>
+          
+
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Wilaya" formControlName="wilaya"readonly>
+            
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="adresse" matInput placeholder="Adresse"readonly>
+        </mat-form-field>
+    </div>
+    <div class="controles-container">
+        <mat-form-field>
+            <mat-select placeholder="Secteur" formControlName="secteurA"readonly>
+                </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="formeleg" matInput placeholder="Forme Légale"readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="capitale" matInput placeholder="Capitale en Dinars"readonly>
+            <span matSuffix>.00</span>
+            <span matSuffix>DA &nbsp;</span>
+
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input formControlName="CodeRC" matInput placeholder="Code Rc"readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="CodeNIF" matInput placeholder="Code NIF"readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="codeP" matInput placeholder="Code Postale"readonly>
+        </mat-form-field>
+    </div>
+
+    <div class="controles-container">
+        <mat-form-field>
+            <input formControlName="type" matInput placeholder="Type d'entreprise"readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="comerciale" matInput placeholder="Commercial"readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select formControlName="type_C" placeholder="type" readonly >
+               
+            </mat-select>
+        </mat-form-field>
+        <div class="button-row">
+           
+        <button mat-raised-button color="accent" type="submit" class="btn btn-success" >
+            print               </button>
+        </div>
+
+    </div>
+
+
+
+
+</form>
+
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ClientService } from 'src/app/shared/client.service';
+import { Location } from '@angular/common';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Client } from 'src/app/interfaces/client.model';
+
+@Component({
+  selector: 'app-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.css']
+})
+export class DetailComponent implements OnInit {
+
+  editForm!: FormGroup;
+
+  constructor(private crudApi: ClientService,
+    private fb: FormBuilder,
+    private location: Location,
+    private actRoute: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
+    @Inject(MAT_DIALOG_DATA) public data:Client,
+    public dialogRef: MatDialogRef<DetailComponent>,) { }
+
+
+    ngOnInit(): void {  this.updateData();
+      const id = this.data.id;
+      console.log('id', this.data.id);
+      this.crudApi
+        .getclientdoc(id)
+        .valueChanges()
+        .subscribe((data) => {
+          this.editForm.setValue(data);
+        });
+    }
+
+
+
+
+  
+
+  updateData() {
+    this.editForm = this.fb.group({
+      idclient: [''],
+      ref :[''],
+     NomClient: [''],
+      rsocial : [''],
+     intitule: [''],
+     email: [''],
+      tele1: [''],
+      tele2: [''],
+      wilaya: [''],
+     adresse: [''],
+     siteweb: [''],
+     formeleg: [''],
+     capitale: [''],
+    commentaire: [''],
+     comerciale: [''],
+     secteurA: [''],
+     codeP: [''],
+     CodeNIF: [''],
+     CodeRC: [''],
+     type_C: [''],
+     coder_Inter: [''],
+     type: [''],
+    })
+}
+
+
+goBack() {
+  this.location.back();
+}
+
+}

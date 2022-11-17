@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">editer Client</h1>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="updateForm()" novalidate>
+    <div class="controles-container">
+        <mat-form-field>
+            <input formControlName="label" matInput placeholder="Label" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="titre" matInput placeholder="Titre" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="description" matInput placeholder="Description">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="date" [(ngModel)]="DateSelected" formControlName="datedeb" matInput placeholder="Date de debut">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="date" [(ngModel)]="DateSelected1" formControlName="datefin" matInput placeholder="Date de fin">
+        </mat-form-field>
+    </div>
+    <div class="controles-container">
+        <mat-form-field>
+            <mat-label>toute la journé<embed src="" type=""></mat-label>
+            <mat-select formControlName="ttjourne" placeholder="toute la journé">
+                <mat-option value="one">oui</mat-option>
+                <mat-option value="two">non</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="time" format-value="hh:mm tt" min="01:00" max="12:00" formControlName="heuredeb" matInput placeholder="heure de debut">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="time" format-value="hh:mm tt" min="01:00" max="12:00" formControlName="heurfin" matInput placeholder="heure de fin">
+
+        </mat-form-field>
+    </div>
+    <div class="controles-container">
+
+        <mat-form-field>
+            <input formControlName="prop" matInput placeholder="proprietaire">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="collab" matInput placeholder="collaborateur">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input formControlName="elemli" matInput placeholder="element liées">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="lieea" matInput placeholder="liée a">
+        </mat-form-field>
+    </div>
+    <div class="form-group text-right">
+
+
+
+
+
+
+        <button mat-raised-button color="accent" type="submit" class="btn btn-success">
+update                </button>
+    </div>
+
+</form>

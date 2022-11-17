@@ -1,0 +1,45 @@
+<form [formGroup]="serviceform" class="normal-form">
+    <div class="controles-container">
+    <mat-form-field>
+         <input  formControlName="idinterloc"  matInput placeholder="identifiant" required>
+            <mat-error> ce champ est obligatoire</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input  formControlName="nom"  matInput placeholder="Nom interlocuteur" required>
+    </mat-form-field>
+    <mat-form-field>
+         <input  formControlName="prenom"  matInput placeholder="Prenom interlocuteur" required>
+    </mat-form-field>
+    <mat-form-field>
+         <input  formControlName="ligneD"  matInput placeholder="Ligne Direct" required>
+    </mat-form-field>
+    </div>
+
+    <div class="controles-container">
+    <mat-form-field>
+        <input  formControlName="tele"  matInput placeholder="Portable" required>
+    </mat-form-field>
+    <mat-form-field>   
+         <input  formControlName="email"  matInput placeholder="Adress Email" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input  formControlName="societe"  matInput placeholder="Societe" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select  placeholder="Client" formControlName="idclient" required>
+            <mat-option *ngFor="let idc of idc" [value]="idc.idclient">
+                {{idc.idclient}}-{{idc.NomClient}}
+            </mat-option>
+        
+        </mat-select>
+    </mat-form-field>
+    
+    </div>
+    <div class="button-row">
+    
+    <button mat-raised-button color="primary" type="submit" (click)='onSubmit()' [disabled]="!serviceform.valid">Primary</button>
+    <button mat-raised-button color="warn" (click)="ResetForm()" >Clear</button>
+    
+    </div>
+    
+</form>    

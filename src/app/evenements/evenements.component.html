@@ -1,0 +1,64 @@
+<div class="container-fluid page">
+    <div class="page_box p-3 mt-2 " id="box">Evenements</div>
+    <div class="page_content shadow p-3 position-relative" id="content">
+        <div class="page_content-data position-absolute" id="data"></div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2 class="h2">events List</h2>
+            <a class="btn btn-success" *ngIf="hideWhenNoevenements" (click)="onCreat()">
+          Add Evenements
+        </a>
+        </div>
+        <div class="pricing-header mx-auto">
+            <div class="no-data text-center" *ngIf="preLoader">
+                <img src="assets/preloader.gif" class="preloader-icon" alt="No Evenements" />
+            </div>
+            <div class="no-data text-center" *ngIf="noData">
+                <img src="assets/no-Evenements.svg" class="nodata-msg" alt="No Evenements" />
+                <p class="nodata-msg">No event added yet!</p>
+                <a (click)="onCreat()" class="btn btn-success"> Add Evenements </a>
+            </div>
+            <div class="table-responsive" *ngIf="hideWhenNoevenements">
+                <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm" />
+                <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+                    <thead>
+                        <tr>
+                            <th mat-sort-header="label" scope="col">Label d'evenement </th>
+                            <th mat-sort-header="titre" scope="col">titre</th>
+                            <th scope="col">déscritption</th>
+                            <th scope="col">collaborateur </th>
+                            <th mat-sort-header="datedeb" scope="col"> date de debut</th>
+                            <th class="text-center" scope="col">Edit</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="
+                  let Evenements of Evenements | filter: filterTerm
+                    | paginate: { itemsPerPage: 50, currentPage: p } ;
+                  let i = index">
+
+
+                            <th scope="row">{{ Evenements.label }} </th>
+                            <td>{{ Evenements.titre }}</td>
+                            <td>{{ Evenements.description }}</td>
+                            <td>{{ Evenements.collab }}</td>
+                            <td>{{ Evenements.datedeb }}</td>
+                            <td class="text-center action-block">
+
+                                <span class="btn btn-sm btn-warning"  (click)="onEdit(Evenements.$key,i)"><i class="fa fa-edit" ></i>Edit</span>
+                                <span class="btn btn-sm btn-danger" (click)="DeletEevent(Evenements)"><i class="fa fa-remove"></i>Delete</span>
+
+                                <span class="btn btn-sm btn-info" (click)="onDetail(Evenements.$key,i)">
+                <i class="fa fa-search"></i>Details
+              </span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

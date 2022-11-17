@@ -1,0 +1,27 @@
+.page {
+    color: white;
+    padding-top: -1.5cm;
+    background: #f1f5f9;
+}
+
+#box {
+    min-height: 120px;
+    background: #1e293b;
+    margin: 0 -1rem;
+    font-size: 36px;
+}
+
+#content {
+    min-height: calc(100vh - 178px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+    font-size: 1rem;
+}
+
+#data {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+}

@@ -1,0 +1,40 @@
+<div class="container-fluid page">
+  <div class="page_box p-3 mt-2 " id="box">Ajout d'un utilisateur</div>
+  <div class="page_content shadow p-3 position-relative" id="content">
+      <div class="page_content-data position-absolute" id="data"></div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          
+<div class="controles-container"style="text-align: center;">
+    <form [formGroup]="serviceform" >
+        <div class="authBlock">
+          <mat-form-field appearance="fill">
+            <mat-label>nom</mat-label>
+            <input matInput FormControlName="displayName" placeholder="name" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>email</mat-label>
+            <input matInput placeholder="pat@example.com" FormControlName="email" #userEmail required>
+            <mat-error></mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput FormControlName="password" type="text" #userPwd required>
+          </mat-form-field>
+          
+          
+          <div class="formGroup">
+            <button mat-raised-button color="primary" type="submit"
+            [disabled]="!serviceform.valid"
+              value="Sign Up"
+              (click)="this.authService.SignUp(serviceform.value,userEmail.value,userPwd.value)" 
+              routerLink="/dashboard">Ajouter
+            </button>
+          </div>
+       </div>
+    </form>
+    </div>
+    </div>
+  </div>
+ </div>

@@ -1,0 +1,77 @@
+<form [formGroup]="editForm" class="normal-form" (ngSubmit)="updateForm()">
+    <div class="controles-container">
+        <h2>Contact</h2>
+        <mat-form-field>
+            <mat-select placeholder="Client" formControlName="idclient" required>
+                <mat-option *ngFor="let idc of client" [value]="idc.idclient">
+                    {{idc.idclient}}
+                </mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="nomC" matInput placeholder="Nom" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="adress" matInput placeholder="Adresse" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Wilaya" [matAutocomplete]=" auto" formControlName="wilaya">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="tele1" matInput placeholder="Telephone1" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="tele2" matInput placeholder="Telephone2" required>
+        </mat-form-field>
+    </div>
+    <div class="controles-container">
+        <h2>Rapport</h2>
+        <mat-form-field>
+            <input type="date" [(ngModel)]="DateSelected" formControlName="date" matInput placeholder="Date">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="typeR" matInput placeholder="Type de Rapport" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="Amontant" matInput placeholder="montant en Dinars">
+            <span matSuffix>.00</span>
+            <span matSuffix>DA &nbsp;</span>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="commentaire" matInput placeholder="Commentaire" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="statut" matInput placeholder="Statut" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="heure" matInput placeholder="heure" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="interlocuteur" formControlName="interloc" required>
+                <mat-option *ngFor="let interloc of interloc" [value]="interloc.idinterloc">
+                    {{interloc.idinterloc}}-{{interloc.nom}}
+                </mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="produit" matInput placeholder="Produit" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="conclu" matInput placeholder="Conclution" required>
+        </mat-form-field>
+    </div>
+    <div class="button-row">
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!editForm.valid">update</button>
+        
+
+    </div>
+
+</form>

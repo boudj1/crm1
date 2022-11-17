@@ -1,0 +1,67 @@
+<form [formGroup]="editForm" class="normal-form" >
+    <div id="printsection">
+    <div class="controles-container">
+        <h2>Contact</h2>
+        <mat-form-field>
+            <mat-select placeholder="Client" formControlName="idclient" readonly>
+
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="nomC" matInput placeholder="Nom" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="adress" matInput placeholder="Adresse" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Wilaya"  formControlName="wilaya" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="tele1" matInput placeholder="Telephone1" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="tele2" matInput placeholder="Telephone2" readonly>
+        </mat-form-field>
+    </div>
+    <div class="controles-container">
+        <h2>Rapport</h2>
+        <mat-form-field>
+            <input type="date" [(ngModel)]="DateSelected" formControlName="date" matInput placeholder="Date" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="typeR" matInput placeholder="Type de Rapport" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="Amontant" matInput placeholder="montant en Dinars" readonly>
+            <span matSuffix>.00</span>
+            <span matSuffix>DA &nbsp;</span>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="commentaire" matInput placeholder="Commentaire" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="statut" matInput placeholder="Statut" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="heure" matInput placeholder="heure" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="interlocuteur" formControlName="interloc" readonly>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="produit" matInput placeholder="Produit" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="conclu" matInput placeholder="Conclution" readonly>
+        </mat-form-field>
+    </div>
+    </div>
+    <div class="button-row">
+
+        <button mat-raised-button color="primary" type="submit" printSectionId="printsection" ngxPrint >Print</button>
+        
+
+    </div>
+
+</form>

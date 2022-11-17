@@ -1,0 +1,66 @@
+<div class="container-fluid page">
+    <div class="page_box p-3 mt-2 " id="box">Clients</div>
+    <div class="page_content shadow p-3 position-relative" id="content">
+        <div class="page_content-data position-absolute" id="data"></div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2 class="h2">liste clients</h2>
+            <a class="btn btn-success" *ngIf="hideWhenNoclient" (click)="onCreat()">
+         Ajoute Client
+        </a>
+        </div>
+        <div class="pricing-header mx-auto">
+            <div class="no-data text-center" *ngIf="preLoader">
+                <img src="assets/preloader.gif" class="preloader-icon" alt="No client" />
+            </div>
+            <div class="no-data text-center" *ngIf="noData">
+                <img src="assets/no-client.svg" class="nodata-msg" alt="No client" />
+                <p class="nodata-msg">PAS de Client!</p>
+                <a class="btn btn-success" (click)="onCreat()"> Ajoute Client</a>
+            </div>
+            <div class="table-responsive" *ngIf="hideWhenNoclient">
+                <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm" />
+                <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th mat-sort-header="idclient" scope="col">identifiant </th>
+                            <th mat-sort-header="Nomclient" scope="col"> Nom client</th>
+                            <th scope="col">Telephone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Wilaya</th>
+                            <th scope="col">Type(CL/PR)</th>
+
+                            <th class="text-center" scope="col">Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="
+                  let client of client |filter: filterTerm |
+                  paginate: { itemsPerPage: 50, currentPage: p } ;
+                  let i = index">
+
+
+                            <th scope="row" [ngClass]="{'table-danger':client.type_C=='prospect' , 'table-success':client.type_C=='client'}">{{ client.idclient}} </th>
+                            <td [ngClass]="{'table-danger':client.type_C=='prospect', 'table-success':client.type_C=='client'}">{{ client.NomClient }}</td>
+                            <td [ngClass]="{'table-danger':client.type_C=='prospect', 'table-success':client.type_C=='client'}">{{ client.tele1 }}</td>
+                            <td [ngClass]="{'table-danger':client.type_C=='prospect', 'table-success':client.type_C=='client'}">{{ client.email}}</td>
+                            <td [ngClass]="{'table-danger':client.type_C=='prospect', 'table-success':client.type_C=='client'}">{{ client.wilaya}}</td>
+                            <td [ngClass]="{'table-danger':client.type_C=='prospect', 'table-success':client.type_C=='client'}"> {{ client.type_C}}</td>
+                            <td class="text-center action-block">
+                                <span class="btn btn-sm btn-warning" (click)="onEdit(client.id,i)"><i class="fa fa-edit"  ></i>Edit</span>
+                                <span class="btn btn-sm btn-danger" (click)="Deletclient(client)"><i class="fa fa-remove"></i>Delete</span>
+
+                                <span class="btn btn-sm btn-info" >
+                <i class="fa fa-search" (click)="onDetail(client.id,i)"></i>Details
+              </span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
